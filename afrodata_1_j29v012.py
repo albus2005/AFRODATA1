@@ -23,9 +23,9 @@ path_file = os.path.join(BASE, "data", "drc_ebola_cases_20mai.xlsx")
 
 # FONCTION CHARGER 
 def excel_loader(path) :
-    df = pd.read_excel(path)
+    df = read_excel(path)
     
     return df.head(10)
     
-excel_loader(path_file)
+print(excel_loader(path_file))
 
