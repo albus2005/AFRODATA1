@@ -67,7 +67,7 @@ def excel_cleaner(df) :
     """
     # j'élimine les code de zone administratif en creant un noiveau df sans ces colonnes 
     # les csv a deja les valeurs manquantes remplacer par zero 
-    df = df[["Admin1","CasSuspect","DecesSuspect","CasConfirmes","DecesConfirmes","Contacts"]]
+    df = df[["Admin1","CasSuspect","DecesSuspect","CasConfirmes","DecesConfirmes","Contacts", "Date"]]
     # on ne va plus supprimer les lignes avec moins de 1 cas  mais il faut que je sache comment faire
     
     return df 
