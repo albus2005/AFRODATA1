@@ -1,3 +1,7 @@
+# AFRODATA1 V010
+
+
+
 # IMPORTATIONS
 import os 
 import pandas as pd
@@ -6,7 +10,7 @@ import pandas as pd
 # CHEMINS DES FICHIERS ET DES DOSSIERS 
 BASE = os.path.dirname(os.path.abspath(__file__))
 data_directory = os.path.join(BASE, "data")
-path_file = os.path.join(data_directory, "drc_ebola_cases_20mai.xlsx")
+path_file = os.path.join(data_directory, "drc_ebola_cases.csv")
 
 
 #                =====UTILITAIRES DU PROGRAMMES=====
@@ -44,7 +48,7 @@ def center_text(text, width=None):
 
 #               =====AFRODATA1=====
 # FONCTION CHARGER 
-def excel_loader(path):
+def csv_loader(path):
     """
     Cette fonction sert au chargement du fichier excel qu'on va traiter 
     
@@ -53,7 +57,7 @@ def excel_loader(path):
             df -                        dataframe retourner a la fin de la fonction 
     """
     try: 
-        df = pd.read_excel(path)
+        df = pd.read_csv(path)
         return df
     except FileNotFoundError:
         raise FileNotFoundError(f"Fichier Introuvable: {path}")
@@ -63,8 +67,24 @@ def df_explorer(df) :
     texte = "INFORMATIONS GÉNÉRALES"
     centered_info = center_text(texte)
     print(Colors.RED + centered_info + Colors.RESET)
+    print(df.shape)
     print(df.info())
-
+    print(df.head(10))
+    print(df.tail(10))
+    
+# FONCTION NETTOYEUSE
+def csv_cleaner(df) :
+    """
+    Cette fonction enlève les codes des zones administratves
+    parametres :
+            df -                    parametres de référence ppur le df ebola_data
+    """
+    # j'élimine les code de zone administratif en creant un noiveau df sans ces colonnes 
+    # les csv a deja les valeurs manquantes remplacer par zero 
+    df = df[["Admin1","CasSuspect","DecesSuspect","CasConfirmes","DecesConfirmes","Contacts"]]
+    # on ne va plus supprimer les lignes avec moins de 1 cas  mais il faut que je sache comment faire
+    
+    return df 
 
 
 # FONCTION ACCUEIL 
@@ -99,10 +119,11 @@ def display():
 def main():
     # Fonction d'accueil
     display()
-    # Fonction loader excel 
-    ebola_data = excel_loader(path_file)
+    # Fonction loader csv 
+    ebola_data = csv_loader(path_file)
+    ebola_data_1 = csv_cleaner(ebola_data)
     # EDA 
-    df_explorer(ebola_data) 
+    df_explorer(ebola_data_1) 
     
 
 if __name__ == "__main__":

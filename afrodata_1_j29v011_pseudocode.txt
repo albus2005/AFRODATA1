@@ -1,0 +1,38 @@
+'''
+AFRODATA 1 v011
+Traitement et analyse des données excel sur l'epidemie d'Ebola 2026
+
+1. Charger le fichier Excel
+creer le chemin du ficher excel 
+retourner un dataframe et une EDA 
+
+2. Nettoyer -- valeurs manquantes, colonnes inutiles
+3. Filtrer -- garder seulement les zones actives (cas > 0)
+4. Agréger -- totaux par province
+5. Afficher -- indicateurs clés en console
+
+'''
+
+
+
+
+
+FONCTION clean(df):
+2. Nettoyer -- valeurs manquantes, colonnes inutiles
+on va abord se débarrasser des colonnes inutile
+ensuite les lignes n'ayant aucun cas 
+puis les valeur manquantes 
+
+
+
+FONCTION filter_active(df):
+    ...
+
+FONCTION aggregate_by_province(df):
+    ...
+
+FONCTION display_indicators(df_aggregated):
+    ...
+
+
+
