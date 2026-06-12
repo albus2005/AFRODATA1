@@ -58,6 +58,21 @@ def excel_loader(path):
     except FileNotFoundError:
         raise FileNotFoundError(f"Fichier Introuvable: {path}")
 
+# FONCTION NETTOYEUSE
+def excel_cleaner(df) :
+    """
+    Cette fonction enlève les codes des zones administratves
+    parametres :
+            df -                    parametres de référence ppur le df ebola_data
+    """
+    # j'élimine les code de zone administratif en creant un noiveau df sans ces colonnes 
+    # les csv a deja les valeurs manquantes remplacer par zero 
+    df = df[["Admin1","CasSuspect","DecesSuspect","CasConfirmes","DecesConfirmes","Contacts"]]
+    # on ne va plus supprimer les lignes avec moins de 1 cas  mais il faut que je sache comment faire
+    
+    return df 
+    
+
 # EDA 
 def df_explorer(df) :
     texte = "INFORMATIONS GÉNÉRALES"
@@ -101,8 +116,10 @@ def main():
     display()
     # Fonction loader excel 
     ebola_data = excel_loader(path_file)
+    ebola_data_1 = excel_cleaner(ebola_data)
     # EDA 
-    df_explorer(ebola_data) 
+    df_explorer(ebola_data_1) 
+    
     
 
 if __name__ == "__main__":
